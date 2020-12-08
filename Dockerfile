@@ -19,6 +19,4 @@ RUN apt install -y php8.0-bcmath php8.0-bz2 php8.0-curl php8.0-mbstring php8.0-m
 # Xdebug debugger
 #RUN apt install php8.0-xdebug
 
-# Install fpm server
-RUN apt install php8.0-fpm
 CMD ['/bin/bash']
