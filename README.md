@@ -9,5 +9,5 @@ docker build . -t php8
 ## Run the container
 
 ```console
-docker run -it php8 /bin/bash
+docker run -it --rm php8 /bin/bash
 ```
