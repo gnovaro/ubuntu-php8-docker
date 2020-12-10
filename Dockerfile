@@ -8,7 +8,7 @@ RUN apt-get update -y && apt install -y software-properties-common
 RUN add-apt-repository ppa:ondrej/php -y && apt-get update -y && apt-get upgrade -y
 
 # Install linux utils
-RUN apt install -y curl wget mc htop net-tools
+RUN apt install -y curl wget mc htop net-tools ca-certificates
 
 # Install php 8.0
 RUN apt install php8.0-common php8.0-cli php8.0-fpm -y
@@ -25,4 +25,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Xdebug debugger
 #RUN apt install php8.0-xdebug
 
-CMD ['/bin/bash']
+RUN /bin/sh -c set -eux; mkdir -p /var/www/html;    mkdir -p /var/run/php;  chown www-data:www-data /var/www/html; 	chmod 775 /var/www/html;
+
+WORKDIR /var/www/html
+
+EXPOSE 9000
+
+#CMD ["/usr/sbin/php-fpm8.0" "--pid" "/var/run/php/php8.0-fpm.pid" "-F" "/etc/php/8.0/fpm/php-fpm.conf"]
+CMD ["/usr/sbin/php-fpm8.0" "--pid" "/var/run/php/php8.0-fpm.pid"]
